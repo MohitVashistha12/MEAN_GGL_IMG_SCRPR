@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row col-md-12">
+    <div>
+      <div class="row col-md-12 ImageSearches">
+        <div ng-repeat="image in ImageSearches" class="image col-md-12 col-sm-12 col-xs-12">
+            <span><a ng-click="getAllFiles($event, image.path, $index)" href="{{image.path}}">{{image.key}}</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
