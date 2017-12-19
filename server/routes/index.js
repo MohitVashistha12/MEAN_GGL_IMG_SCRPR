@@ -8,7 +8,7 @@
     var cheerio = require('cheerio');
     var fs = require("fs");
     var path = require('path');
-
+    var fs = require("fs")
     /* GET home page. */
     router.get('/', function(req, res) {
       res.render('index');
@@ -19,7 +19,11 @@
         });
       });
       router.put('/api/getFiles', function(req, res) {
-        console.log(req.body.dest);
+        fs.readdir(req.body.dest+"\\", function(err, files) {
+          if (err) return;
+          // Extracted all the files that has to be shown on click of particular searched result
+          console.log(files);
+        })
         });
     router.post('/api/search', function(req, res) {
         var query = req.body.image;
@@ -71,7 +75,7 @@
                 return streamToBuffer({stream:check});
               });
               Promise.all(promises).then(saveImg => {
-                var fs = require("fs")
+                //Please declare environment variable (UPLOAD_DIR) on your system so that files can be saved separately from source code
                 saveImg.forEach(function(item,index) {
                   if (!fs.existsSync(process.env.UPLOAD_DIR + req.body.image + "/")) {
                     fs.mkdirSync(process.env.UPLOAD_DIR + req.body.image + "/");
